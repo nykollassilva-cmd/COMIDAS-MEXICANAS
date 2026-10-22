@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sabores do México 🌮</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #fffaf0;
+            color: #292929;
+        }
+
+        /* CABEÇALHO */
+        header {
+            background: linear-gradient(135deg, #006847, #008f5a);
+            color: white;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 3px 12px rgba(0,0,0,.2);
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #ffd700;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 520px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+
+            background:
+                linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+                url("https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?auto=format&fit=crop&w=1600&q=80");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 21px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #ce1126;
+            color: white;
+            padding: 15px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: .3s;
+        }
+
+        .btn:hover {
+            background: #a5091a;
+            transform: scale(1.05);
+        }
+
+        /* SEÇÕES */
+        section {
+            padding: 70px 8%;
+        }
+
+        .titulo {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .titulo h2 {
+            color: #006847;
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .titulo p {
+            color: #666;
+        }
+
+        /* CARDS */
+        .pratos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,.12);
+            transition: .3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card h3 {
+            color: #ce1126;
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .ingredientes {
+            font-size: 14px;
+            color: #006847;
+            font-weight: bold;
+        }
+
+        /* VÍDEOS */
+        #videos {
+            background: #f1f7f2;
+        }
+
+        .videos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .video-card {
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 5px 18px rgba(0,0,0,.1);
+        }
+
+        .video-card iframe {
+            width: 100%;
+            height: 230px;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .video-card h3 {
+            margin-top: 15px;
+            color: #006847;
+        }
+
+        /* CULTURA */
+        .cultura {
+            background: #ce1126;
+            color: white;
+            text-align: center;
+        }
+
+        .cultura h2 {
+            font-size: 38px;
+            margin-bottom: 20px;
+        }
+
+        .cultura p {
+            max-width: 850px;
+            margin: auto;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        /* RODAPÉ */
+        footer {
+            background: #006847;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        footer p {
+            margin: 7px;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 700px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 0 8px;
+                font-size: 14px;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- CABEÇALHO -->
+    <header>
+        <div class="logo">🌮 Sabores do México</div>
+
+        <nav>
+            <a href="#inicio">Início</a>
+            <a href="#pratos">Pratos</a>
+            <a href="#videos">Vídeos</a>
+            <a href="#cultura">Cultura</a>
+        </nav>
+    </header>
+
+
+    <!-- INÍCIO -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>Sabores do México 🇲🇽</h1>
+
+            <p>
+                Descubra os pratos mais tradicionais da culinária mexicana,
+                suas histórias, ingredientes e formas de preparo.
+            </p>
+
+            <a href="#pratos" class="btn">
+                Explorar pratos
+            </a>
+        </div>
+    </section>
+
+
+    <!-- PRATOS -->
+    <section id="pratos">
+
+        <div class="titulo">
+            <h2>Comidas Típicas</h2>
+            <p>Conheça alguns dos sabores mais famosos do México.</p>
+        </div>
+
+        <div class="pratos">
+
+            <div class="card">
+                <img
+                    src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=900&q=80"
+                    alt="Tacos mexicanos">
+
+                <div class="card-content">
+                    <h3>🌮 Tacos</h3>
+
+                    <p>
+                        Um dos pratos mais conhecidos do México.
+                        Tortilhas de milho ou trigo são recheadas com
+                        carne, vegetais, queijo e diversos temperos.
+                    </p>
+
+                    <div class="ingredientes">
+                        Ingredientes: tortilha, carne, cebola,
+                        coentro e limão.
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card">
+                <img
+                    src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=80"
+                    alt="Guacamole">
+
+                <div class="card-content">
+                    <h3>🥑 Guacamole</h3>
+
+                    <p>
+                        Preparação feita principalmente com abacate
+                        amassado e temperado. É tradicionalmente servida
+                        como acompanhamento ou entrada.
+                    </p>
+
+                    <div class="ingredientes">
+                        Ingredientes: abacate, tomate, cebola,
+                        limão, coentro e sal.
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card">
+                <img
+                    src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=900&q=80"
+                    alt="Burritos">
+
+                <div class="card-content">
+                    <h3>🌯 Burrito</h3>
+
+                    <p>
+                        Uma grande tortilha enrolada e recheada com
+                        ingredientes como carne, feijão, arroz,
+                        queijo e vegetais.
+                    </p>
+
+                    <div class="ingredientes">
+                        Ingredientes: tortilha, arroz, feijão,
+                        carne e queijo.
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card">
+                <img
+                    src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=80"
+                    alt="Churros">
+
+                <div class="card-content">
+                    <h3>🍩 Churros</h3>
+
+                    <p>
+                        Doce feito com uma massa frita e crocante,
+                        normalmente coberto com açúcar e canela.
+                    </p>
+
+                    <div class="ingredientes">
+                        Ingredientes: farinha, água, açúcar,
+                        óleo e canela.
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card">
+                <img
+                    src="https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?auto=format&fit=crop&w=900&q=80"
+                    alt="Tamales">
+
+                <div class="card-content">
+                    <h3>🫔 Tamales</h3>
+
+                    <p>
+                        Massa de milho preparada com diferentes recheios
+                        e cozida tradicionalmente envolta em folhas.
+                    </p>
+
+                    <div class="ingredientes">
+                        Ingredientes: milho, carne ou vegetais,
+                        temperos e folhas.
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card">
+                <img
+                    src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=80"
+                    alt="Pozole">
+
+                <div class="card-content">
+                    <h3>🍲 Pozole</h3>
+
+                    <p>
+                        Uma sopa tradicional mexicana preparada com
+                        milho nixtamalizado, carne e diversos
+                        acompanhamentos.
+                    </p>
+
+                    <div class="ingredientes">
+                        Ingredientes: milho, carne, pimenta,
+                        cebola, limão e ervas.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- VÍDEOS -->
+    <section id="videos">
+
+        <div class="titulo">
+            <h2>🎥 Vídeos de Receitas</h2>
+            <p>Aprenda a preparar alguns pratos mexicanos.</p>
+        </div>
+
+        <div class="videos">
+
+            <div class="video-card">
+                <iframe
+                    src="https://www.youtube.com/embed/your-video-id"
+                    title="Receita de tacos"
+                    allowfullscreen>
+                </iframe>
+
+                <h3>Como preparar tacos</h3>
+                <p>
+                    Aprenda uma maneira simples de preparar tacos
+                    mexicanos em casa.
+                </p>
+            </div>
+
+
+            <div class="video-card">
+                <iframe
+                    src="https://www.youtube.com/embed/your-video-id"
+                    title="Como preparar guacamole"
+                    allowfullscreen>
+                </iframe>
+
+                <h3>Guacamole tradicional</h3>
+                <p>
+                    Veja como preparar um guacamole cremoso e
+                    cheio de sabor.
+                </p>
+            </div>
+
+
+            <div class="video-card">
+                <iframe
+                    src="https://www.youtube.com/embed/your-video-id"
+                    title="Como preparar churros"
+                    allowfullscreen>
+                </iframe>
+
+                <h3>Churros mexicanos</h3>
+                <p>
+                    Uma receita fácil para preparar churros
+                    crocantes e deliciosos.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- CULTURA -->
+    <section class="cultura" id="cultura">
+
+        <h2>🇲🇽 A Cultura Mexicana</h2>
+
+        <p>
+            A culinária mexicana reúne ingredientes, técnicas e tradições
+            desenvolvidas ao longo de muitos séculos. Milho, feijão,
+            pimentas, tomates e diferentes ervas fazem parte de muitas
+            preparações tradicionais. Cada região do México possui
+            seus próprios pratos e sabores.
+        </p>
+
+    </section>
+
+
+    <!-- RODAPÉ -->
+    <footer>
+
+        <p>🌮 Sabores do México</p>
+
+        <p>
+            Uma viagem pelos sabores e tradições da culinária mexicana.
+        </p>
+
+        <p>© 2026 - Todos os direitos reservados</p>
+
+    </footer>
+
+
+    <script>
+        // Pequena interação ao clicar nos links do menu
+        document.querySelectorAll("nav a").forEach(link => {
+            link.addEventListener("click", function () {
+                console.log("Navegando para: " + this.getAttribute("href"));
+            });
+        });
+    </script>
+
+</body>
+</html>
